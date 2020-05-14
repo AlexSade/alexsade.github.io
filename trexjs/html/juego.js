@@ -278,6 +278,6 @@ function principal() {
   dibujarCactus();
   gravedad();
   dibujaRex();
-  //colision();
+  colision();
   imprimir();
 }
