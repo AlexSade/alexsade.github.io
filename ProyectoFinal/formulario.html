@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <script src="assets/js/formu.js"></script>
+    <title>Blog sobre viajes. TrotaMón</title>
+</head>
+<body>
+    <header id="header">
+        <div class="center">
+            <div id="logo">
+                <img src="assets/images/mundo.png" class="app-logo" alt="Logotipo"/> 
+                <span id="brand">
+                    <strong>Trota</strong>Món
+                </span>
+            </div>
+            <nav id="menu">
+                <ul>
+                    <li>
+                        <a href="index.html">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="blog.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="#">Suscribirse</a>
+                    </li>
+                </ul>
+            </nav>
+
+        <div class="clearfix"></div>
+        </div>
+    </header>
+
+    <div class="center">
+
+        <section id="content">
+            
+            <h1 class="subheader">Suscribirse</h1>
+
+            <form class="mid-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre<strong id='errNom'>  </strong></label>
+                    <input type="text" name="nombre" />                    
+                </div>
+
+                <div class="form-group">
+                    <label for="apellidos">Apellidos<strong id='errApe'>  </strong></label>
+                    <input type="text" name="apellido" />                    
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email<strong id='errEmail'>  </strong></label>
+                    <input type="text" name="email" />                    
+                </div>
+
+                <div class="form-group radiobuttons">
+                    <input type="radio" name="genero" value="hombre" checked/> Hombre
+                    <input type="radio" name="genero" value="mujer" /> Mujer      
+                    <input type="radio" name="genero" value="otro" /> Otro               
+                </div>
+
+                <div class="form-group check">
+                    <input type="checkbox" id="postal" name="postal" value="">Deseo recibir la inscripcion en correo postal
+                </div>
+                
+                <div class="form-group">
+                    <label for="direccion">Direccion<strong id='errDir'>  </strong></label>
+                    <input type="text" name="direccion" id="direccion" disabled/>                    
+                </div>
+
+                <div class="form-group">
+                    <label for="provincia">Seleciona tu provincia</label>
+                    <div class="clearfix"></div>
+                    <select id="provincia" name="provincia" disabled>
+                        <!--Contenido generado dinamicamente-->
+                    </select>
+                </div>
+
+                <div class="clearfix"></div>
+                
+                <div class="form-group">
+                    <label for="localidad">Seleciona tu localidad</label>
+                    <div class="clearfix"></div>
+                    <select id="localidad" name="localidad" disabled>
+                        <!--Contenido generado dinamicamente-->
+                    </select>
+                </div>
+                
+                <div class="clearfix"></div>
+
+                <input type="button" value="Enviar" class="btn btn-success" id="submit"/>
+
+            </form>
+        </section>
+
+        <aside id="sidebar">
+
+            <div id="nav-blog" class="sidebar-item">
+                <h3>Puedes hacer esto</h3>
+                <a href="nuevoart.html" class="btn btn-success">Crear artículo</a>
+            </div>
+
+            <div id="search" class="sidebar-item">
+                <h3>Buscador</h3>
+                <p>Encuentra el artículo que buscas</p>
+                <from>
+                    <input type="text" id="searchField" />
+                    <input type="button" id="searchBtn" value="buscar" class="btn"/>
+                </from>
+            </div>
+
+        </aside>
+        <div class="clearfix"></div>
+
+    </div>
+
+    <footer id="footer">
+        <div class="center">
+            <p>
+                &copy; Alejandro Perez Favieres. Proyecto lenguage de marcas
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

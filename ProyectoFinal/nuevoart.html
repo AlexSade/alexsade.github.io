@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Blog sobre viajes. TrotaMón</title>
+    <script src="assets/js/new.js"></script>
+</head>
+<body>
+    <header id="header">
+        <div class="center">
+            <div id="logo">
+                <img src="assets/images/mundo.png" class="app-logo" alt="Logotipo"/> 
+                <span id="brand">
+                    <strong>Trota</strong>Món
+                </span>
+            </div>
+            <nav id="menu">
+                <ul>
+                    <li>
+                        <a href="index.html">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="blog.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="#">Suscribirse</a>
+                    </li>
+                </ul>
+            </nav>
+
+        <div class="clearfix"></div>
+        </div>
+    </header>
+
+    <div class="center">
+
+        <section id="content">
+            
+            <h1 class="subheader">Crear artículo</h1>
+
+            <form class="mid-form" >
+                <div class="form-group">
+                    <label for="titulo" >Titulo<strong id='errTit'>  </strong></label>
+                    <input type="text" name="titulo" />                    
+                </div>
+
+                <div class="form-group">
+                    <label for="imagen">URL de la imagen<strong id='errUrl'>  </strong></label>
+                    <input type="text" name="imagen" />                    
+                </div>
+
+                <div class="form-group">
+                    <label for="content">Contenido<strong id='errContent'>  </strong></label>
+                    <textarea name="content"></textarea>               
+                </div>
+
+                <div class="clearfix"></div>
+
+                <button type="button" class="btn btn-success" id="publicar">Publicar</button>
+
+            </form>
+        </section>
+
+        <aside id="sidebar">
+
+            <div id="nav-blog" class="sidebar-item">
+                <h3>Puedes hacer esto</h3>
+                <a href="#" class="btn btn-success">Crear artículo</a>
+            </div>
+
+            <div id="search" class="sidebar-item">
+                <h3>Buscador</h3>
+                <p>Encuentra el artículo que buscas</p>
+                <from>
+                    <input type="text" id="searchField" />
+                    <input type="button" id="searchBtn" value="buscar" class="btn"/>
+                </from>
+            </div>
+
+        </aside>
+        <div class="clearfix"></div>
+
+    </div>
+
+    <footer id="footer">
+        <div class="center">
+            <p>
+                &copy; Alejandro Perez Favieres. Proyecto lenguage de marcas
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
