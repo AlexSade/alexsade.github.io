@@ -4,9 +4,7 @@ var arrayArticulos = sessionStorage.getItem('articulos');
 var articulos = JSON.parse(arrayArticulos);
 
 function imprimirArticulos(){
-  var btnSearch = document.getElementById('searchBtn');
-  btnSearch.addEventListener('click',clickSearch);
-  
+
     var content = document.getElementById("content");
     for(var i = 0; i < articulos.length; i++){
         
@@ -107,17 +105,5 @@ function deleteArticle(){
   }
 
 }
-
-//Funcion buscar
-function search(article){
-  var field = document.getElementById('searchField').value;
-  return article.titulo.includes(field);
-}
-
-function clickSearch(){
-  var findedArt = articulos.findIndex(search);
-  location.assign('blog.html#article-' + findedArt);
-}
-
 
 window.addEventListener('load',imprimirArticulos);

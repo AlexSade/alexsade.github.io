@@ -35,9 +35,6 @@ function init(){
     var submit = document.getElementById('submit');
     submit.addEventListener('click',validar);
 
-    var btnSearch = document.getElementById('searchBtn');
-    btnSearch.addEventListener('click',clickSearch);
-
 }
  //Funciones listas
 function generarLista(arr,obj){
@@ -158,17 +155,6 @@ function validar(){
         }
     }
     return true;
-}
-
-//Funcion buscar
-function search(article){
-    var field = document.getElementById('searchField').value;
-    return article.titulo.includes(field);
-}
-
-function clickSearch(){
-    var findedArt = articulos.findIndex(search);
-    location.assign('blog.html#article-' + findedArt);
 }
 
 window.addEventListener('load',init);

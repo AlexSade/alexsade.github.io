@@ -18,13 +18,30 @@ if(!articulos || articulos.length < 1){
     //Guardo el nevo array de articulos en el almacenamiento local
     sessionStorage.articulos = JSON.stringify(articulos);
 }
-
+var i = 0;
 function init(){
 
-    var btnSearch = document.getElementById('searchBtn');
-    btnSearch.addEventListener('click',clickSearch);
-
     imprimirArticulos();
+    banner(i);
+    setInterval(() => {
+        i++;
+        if(i > 3){
+            i = 0;
+        }
+        banner(i);
+    },3000);
+}
+
+//Funcion banner
+
+function banner(i){
+    var ban = document.getElementById('slider');
+    var link = document.querySelector('#slider a');
+    var titulo = document.querySelector('#slider h1');
+    titulo.innerHTML = '';
+    titulo.appendChild(document.createTextNode(articulos[i].titulo));
+    ban.style.backgroundImage= "url(" + articulos[i].imagen + ")";
+    link.href = 'blog.html#article-' + i;
 }
 
 //Imprime articulos en index
@@ -66,37 +83,6 @@ function imprimirArticulos(){
         //Por ultimo insertamos en el nodo del index
         articles.appendChild(artItem);
     }
-}
-//Funcion convierte de milisegundos a hora
-function miliToSeg(millis) {
-    let sec = Math.floor(millis / 1000);
-    let hrs = Math.floor(sec / 3600);
-    sec -= hrs * 3600;
-    let min = Math.floor(sec / 60);
-    sec -= min * 60;
-  
-    sec = '' + sec;
-    sec = ('00' + sec).substring(sec.length);
-  
-    if (hrs > 0) {
-      min = '' + min;
-      min = ('00' + min).substring(min.length);
-      return hrs + ":" + min + ":" + sec;
-    }
-    else {
-      return min + ":" + sec;
-    }
-}
-
-//Funcion buscar
-function search(article){
-    var field = document.getElementById('searchField').value;
-    return article.titulo.includes(field);
-}
-
-function clickSearch(){
-    var findedArt = articulos.findIndex(search);
-    location.assign('blog.html#article-' + findedArt);
 }
 
 //Carga articulos por defecto

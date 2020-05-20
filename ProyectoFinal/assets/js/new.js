@@ -27,8 +27,6 @@ function init(){
     content.addEventListener('blur',validarContent);
     content.addEventListener('keyup',validarContent);
 
-    var btnSearch = document.getElementById('searchBtn');
-    btnSearch.addEventListener('click',clickSearch);
 }
 
 //Creo articulos
@@ -58,6 +56,7 @@ function validate(){
     return true;
 }
 
+//Validadores individuales
 function validarTitulo(){
     var titulo = document.getElementsByName('titulo')[0];
     var lblTit = document.getElementById('errTit');
@@ -103,17 +102,5 @@ function validarContent(){
         return false;
     }
 }
-
-//Funcion buscar
-function search(article){
-    var field = document.getElementById('searchField').value;
-    return article.titulo.includes(field);
-}
-
-function clickSearch(){
-    var findedArt = articulos.findIndex(search);
-    location.assign('blog.html#article-' + findedArt);
-}
-
 
 window.addEventListener('load',init);
