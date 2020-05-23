@@ -19,11 +19,11 @@ function imprimirArticulos(){
         h1.className='subheader';
         h1.appendChild(document.createTextNode(articulos[i].titulo));
         //Crea time
-        var timeTrans = Date.now() - articulos[i].date;
+        var timeTrans = fecha(articulos[i].date);
         var time = document.createElement('time');
         time.dateTime = timeTrans;
         time.className = 'date';
-        time.appendChild(document.createTextNode(miliToSeg(timeTrans)));
+        time.appendChild(document.createTextNode(timeTrans));
         //Crea link elminar
         var drop = document.createElement('a');
         drop.appendChild(document.createTextNode('Eliminar articulo'));
@@ -59,6 +59,14 @@ function goArticle(){
   }
   
 }
+
+//Funciones creacion de fechas
+function fecha(fecha){
+  var date = fecha.split('T')[0];
+  var time = fecha.split('T')[1].split('.')[0];
+  return(date + ' ' +time);
+}
+
 //Funcion convierte de milisegundos a hora
 function miliToSeg(millis) {
     let sec = Math.floor(millis / 1000);
