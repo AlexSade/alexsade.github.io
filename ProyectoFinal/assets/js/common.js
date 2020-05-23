@@ -12,9 +12,26 @@ function init(){
     var btnMenu = document.getElementById('imgmenu');
     btnMenu.addEventListener('click',desplegable);
 
+    window.addEventListener("keydown",presionar,false);
+
 }
 
-//Funcion menudespleg
+//Funcion combinacino teclas
+function presionar(event){
+//i para italic b para negrita
+if(event.keyCode == 73){
+
+        document.body.style.fontStyle = 'italic';
+
+    }else if(event.keyCode == 66){
+
+        document.body.style.fontWeight = 'bold';
+
+    }
+    
+}
+
+//Funcion menudesplegable
 
 function desplegable(){
     

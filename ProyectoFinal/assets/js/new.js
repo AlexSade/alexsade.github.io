@@ -82,7 +82,7 @@ function validarImagen(){
         return true;
     }else{
         lblUrl.style.color = 'red';
-        lblUrl.innerHTML= '     URL introducida es incorrecta';
+        lblUrl.innerHTML= '     URL introducida es incorrecta, recuerda que debe de ser una imagen';
         imagen.className = 'error';
         return false;
     }
