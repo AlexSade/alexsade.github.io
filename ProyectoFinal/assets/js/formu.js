@@ -154,6 +154,7 @@ function validar(){
             return false;
         }
     }
+    alert("Formulario enviado");
     return true;
 }
 

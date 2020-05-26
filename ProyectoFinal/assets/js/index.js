@@ -125,7 +125,7 @@ function articulosDefecto(){
     ));
     articulos.push(new Articulo(
         'Cristo Redentor de Río de Janeiro',
-        'https://static2.abc.es/media/viajar/2020/04/13/cristo-redentor-kRcB--1200x630@abc.jpg',
+        'https://cdn.civitatis.com/brasil/rio-de-janeiro/tour-cristo-redentor-tren.jpg',
         'Por último, aunque no menos importante en la clasificación, es también una de las 7 nuevas maravillas del Mundo Moderno la escultura del Cristo Redentor de Río de Janeiro, en Brasil.'+
         ' Se trata de una estatua de 30 metros de altura y diseño Art Decó que corona la montaña de Corcovado representando el cuerpo de Jesús de Nazaret.'+
         ' Esta obra, inaugurada en 1931 fue fruto del trabajo de las manos del escultor polaco-fracés Paul Landowski y el ingeniero brasileño Heitor da Silva Costa, quienes también contaron con la colaboración del francés Albert Caquot y del artista rumano Gheorge Leonida, siendo este último responsable de la cara de Cristo.'
