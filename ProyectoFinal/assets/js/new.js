@@ -2,6 +2,7 @@
 //Lo convierto de string a objeto
 var arrayArticulos = sessionStorage.getItem('articulos');
 var articulos = JSON.parse(arrayArticulos);
+var editArt;
 //Constructor de articulos
 function Articulo(titulo,imagen,contenido,date){
     this.titulo = titulo;
@@ -12,8 +13,16 @@ function Articulo(titulo,imagen,contenido,date){
 //funcion inicializadora
 function init(){
 
+
+    editArt = location.href.split('?')[1];
     var btn = document.getElementById('publicar');
-    btn.addEventListener('click',create);
+    if(editArt == undefined || editArt > articulos.length - 1){
+        btn.addEventListener('click',create);
+    }else{
+        editPage();
+        btn.addEventListener('click',edit);
+
+    }
 
     var titulo = document.getElementsByName('titulo')[0];
     titulo.addEventListener('keyup',validarTitulo);
@@ -29,19 +38,14 @@ function init(){
 
 }
 
-//Creo articulos
-function create(){
-    if(validate()){
-        var titulo = document.getElementsByName('titulo')[0].value;
-        var imagen = document.getElementsByName('imagen')[0].value;
-        var content = document.getElementsByName('content')[0].value;
-    
-        var newArt = new Articulo(titulo,imagen,content);
-        articulos.unshift(newArt);
-        sessionStorage.articulos = JSON.stringify(articulos);
-        alert('Se ha creado un nuevo articulo');
-        window.location.assign('blog.html');
-    }
+//Modifica la pagina para la edicion de contenido
+function editPage(){
+    document.querySelector('#content .subheader').innerText = "Editar artículo";
+    var btn = document.getElementById('publicar');
+    btn.innerText = "EDITAR";
+    document.getElementsByName('titulo')[0].value = articulos[editArt].titulo;
+    document.getElementsByName('imagen')[0].value = articulos[editArt].imagen;
+    document.getElementsByName('content')[0].value = articulos[editArt].contenido;
 }
 
 //Funcion validar
@@ -100,6 +104,35 @@ function validarContent(){
         lblContent.innerHTML= '     El campo debe de contener mas de 100 carácteres';
         content.className = 'error';
         return false;
+    }
+}
+
+//Edito articulo
+function edit(){
+    if(validate()){
+        if(confirm('¿Desea editar el arituclo?')){
+            articulos[editArt].titulo = document.getElementsByName('titulo')[0].value;
+            articulos[editArt].imagen = document.getElementsByName('imagen')[0].value;
+            articulos[editArt].contenido = document.getElementsByName('content')[0].value;
+
+            sessionStorage.articulos = JSON.stringify(articulos);
+            window.location.assign('blog.html#article-'+editArt);
+        }
+    }
+}
+
+//Creo articulos
+function create(){
+    if(validate()){
+        var titulo = document.getElementsByName('titulo')[0].value;
+        var imagen = document.getElementsByName('imagen')[0].value;
+        var content = document.getElementsByName('content')[0].value;
+    
+        var newArt = new Articulo(titulo,imagen,content);
+        articulos.unshift(newArt);
+        sessionStorage.articulos = JSON.stringify(articulos);
+        alert('Se ha creado un nuevo articulo');
+        window.location.assign('blog.html');
     }
 }
 

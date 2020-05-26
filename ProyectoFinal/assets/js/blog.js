@@ -32,6 +32,11 @@ function imprimirArticulos(){
         //Crea p
         var p = document.createElement('p');
         p.appendChild(document.createTextNode(articulos[i].contenido));
+        //Crea link editar
+        var edit = document.createElement('a');
+        edit.appendChild(document.createTextNode('Editar'));
+        edit.id = 'edit-' + i;
+        edit.addEventListener('click',editArticle);
         //Crea div clearfix
         var clear = document.createElement('div');
         clear.className = 'clearfix';
@@ -44,6 +49,7 @@ function imprimirArticulos(){
         artItem.appendChild(time);
         artItem.appendChild(drop);
         artItem.appendChild(p);
+        artItem.appendChild(edit);
         artItem.appendChild(clear);
         //Por ultimo insertamos en el nodo del index
         content.appendChild(artItem);
@@ -112,6 +118,14 @@ function deleteArticle(){
     imprimirArticulos();
   }
 
+}
+
+function editArticle() {
+  //Obtenemos el nodo padre(Articulo)
+  var nodoArticulo = event.target.parentNode;
+  //Obtenemos su id, el numero incluido en su id corres ponde a su posicion en el array
+  var articuloId = parseInt((nodoArticulo.id).split('-')[1]);
+  window.location.assign('nuevoart.html?' + articuloId);
 }
 
 window.addEventListener('load',imprimirArticulos);
