@@ -1,0 +1,102 @@
+@font-face {
+    font-family: Lobster;
+    src: url(./fonts/Lobster-Regular.ttf);
+}
+
+@font-face {
+    font-family: Comforta;
+    src: url(./fonts/Comfortaa-VariableFont_wght.ttf);
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Comforta;
+}
+
+
+/*NAV BAR*/
+nav{
+    padding: 5px;
+    background-color: rgb(242, 242, 242);
+    box-shadow: 0px 3px 4px -1px rgba(79,79,79,1);
+    width: 100%;
+    position: fixed;
+    top: 0px;
+}
+
+nav h1{
+    display: block;
+    font-family: Lobster;
+    float: left;
+    font-size: 200%;
+}
+
+nav span{
+    display: block;
+    float: right;
+    font-size: 200%;
+    margin-right: 15px;
+}
+
+/* SECCTION ITEM */
+.section-item{
+    display: inline-block;
+    text-align: center;
+    margin: 10px;
+}
+.section-item img{
+    width: 75px;
+    border-radius: 75px;
+    border: solid 2px rgb(36, 36, 36);
+}
+
+.section-item h3{
+    color: rgb(130, 129, 129);
+}
+
+/* SECCTION LIST */
+#section-list{
+    overflow: auto;
+    white-space: nowrap;
+    margin-top: 60px;
+    border-bottom: solid 1px #ccc;
+}
+
+/* ITEM CARD*/
+
+.item-card{
+    margin-top: 15px;
+}
+
+.item-card header{
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+.item-card h3{
+    font-style: italic;
+}
+
+.alerg-card img{
+    width: 50px;
+}
+
+.alerg-card {
+    display: block;
+    float: left;
+}
+
+.wish-item{
+    display: block;
+    font-size: 40px;
+    float: right;
+}
+
+.item-card section img{
+    width: 100%;
+}
+
+/*PUPURRI*/
+.clear {
+    clear: both;
+}
