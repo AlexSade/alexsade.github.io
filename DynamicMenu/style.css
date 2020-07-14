@@ -70,9 +70,21 @@ nav span{
 }
 
 .item-card header{
+    margin-right: 15px;
     margin-left: 15px;
     margin-bottom: 10px;
 }
+
+.title-card{
+    display: block;
+    float: left;
+}
+
+.price-card{
+    display: block;
+    float: right;
+}
+
 .item-card h3{
     font-style: italic;
 }
