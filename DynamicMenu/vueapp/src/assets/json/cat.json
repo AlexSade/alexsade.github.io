@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Entrantes",
+        "rute": "/entrantes" 
+    },
+    {
+        "name": "Carnes",
+        "rute": "/carnes" 
+    },
+    {
+        "name": "Pescados",
+        "rute": "/pescados" 
+    },
+    {
+        "name": "Bebidas",
+        "rute": "/bebidas" 
+    },
+    {
+        "name": "Postres",
+        "rute": "/postres" 
+    }
+
+]
