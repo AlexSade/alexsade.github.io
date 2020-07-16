@@ -1,13 +1,19 @@
 <template>
     <div class="section-item">
-        <img :src="require('../assets/img'+category.rute+'/front.jpg')" alt="entrantes">
+        <img :src='imageRoute' alt="entrantes">
         <h3>{{category.name}}</h3>
     </div>
 </template>
 
 <script>
+
 export default {
     name: 'Cat',
+    data() {
+        return{
+            imageRoute: './api/img'+this.category.rute+'/front.jpg'
+        }
+    },
     props: {
         category: Object
     }

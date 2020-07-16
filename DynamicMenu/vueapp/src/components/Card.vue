@@ -11,7 +11,7 @@
             </header>
 
             <section>
-                <img :src="require('../assets/img/'+data.cat+'/'+data.img)" alt="ensaladillarusa">
+                <img :src='imageRoute' alt="ensaladillarusa">
             </section>
             
             <footer>
@@ -32,6 +32,11 @@ export default {
     name: 'Card',
     props: {
         data: Object
+    },
+    data() {
+        return{
+            imageRoute : './api/img/' + this.data.cat + '/' + this.data.img
+        }
     }
 }
 </script>

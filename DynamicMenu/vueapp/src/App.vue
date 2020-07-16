@@ -2,7 +2,7 @@
   <div id="app">
     <Head />
     <div id="section-list">
-      <Cat v-on:click.native="loadCard(cat.name)" v-for="cat in list" :category="cat" v-bind:key="cat.name"/>
+      <Cat v-on:click.native="getCategory(cat.rute)" v-for="cat in list" :category="cat" v-bind:key="cat.name"/>
     </div>
 
     <div id="content">
@@ -18,8 +18,7 @@ import axios from 'axios';
 import Head from "./components/Head.vue";
 import Cat from "./components/Cat.vue";
 import Card from "./components/Card.vue";
-//import CatList from './assets/json/cat.json';
-import CardList from './assets/json/entrantes.json';
+//import CardList from './assets/json/entrantes.json';
 
 export default {
   name: "App",
@@ -31,20 +30,27 @@ export default {
   data(){
     return {
       list: '',
-      cards: CardList
+      cards: ''
     }
   },
   mounted(){
-    this.getCategory();
+    this.getCategoryBar();
   },
   methods: {
     loadCard: function (key) {
       this.cards = require('./assets/json/'+ key.toLowerCase() +'.json');
     },
-    getCategory: function() {
+    getCategoryBar: function() {
       axios.get('./api/cat.json')
         .then(res => {
           this.list = res.data;
+          this.getCategory(this.list[0].rute);
+        });
+    },
+    getCategory: function(cate) {
+      axios.get('./api' + cate + '.json')
+        .then(res => {
+          this.cards = res.data;
         });
     }
   }
