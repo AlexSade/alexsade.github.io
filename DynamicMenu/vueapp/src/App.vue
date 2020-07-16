@@ -42,12 +42,18 @@ export default {
         .then(res => {
           this.list = res.data;
           this.getCategory(this.list[0].rute);
-        });
+        })
+        .catch(err => {
+          alert('Fallo al cargar' + err);
+        })
     },
     getCategory: function(cate) {
       axios.get('./api' + cate + '.json')
         .then(res => {
           this.cards = res.data;
+        })
+        .catch(err => {
+          alert('Categoria no encontrada' + err);
         });
     }
   }
