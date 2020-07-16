@@ -37,9 +37,6 @@ export default {
     this.getCategoryBar();
   },
   methods: {
-    loadCard: function (key) {
-      this.cards = require('./assets/json/'+ key.toLowerCase() +'.json');
-    },
     getCategoryBar: function() {
       axios.get('./api/cat.json')
         .then(res => {
