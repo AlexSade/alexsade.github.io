@@ -13,10 +13,12 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 import Head from "./components/Head.vue";
 import Cat from "./components/Cat.vue";
 import Card from "./components/Card.vue";
-import CatList from './assets/json/cat.json';
+//import CatList from './assets/json/cat.json';
 import CardList from './assets/json/entrantes.json';
 
 export default {
@@ -28,13 +30,22 @@ export default {
   },
   data(){
     return {
-      list: CatList,
+      list: '',
       cards: CardList
     }
+  },
+  mounted(){
+    this.getCategory();
   },
   methods: {
     loadCard: function (key) {
       this.cards = require('./assets/json/'+ key.toLowerCase() +'.json');
+    },
+    getCategory: function() {
+      axios.get('./api/cat.json')
+        .then(res => {
+          this.list = res.data;
+        });
     }
   }
 };
