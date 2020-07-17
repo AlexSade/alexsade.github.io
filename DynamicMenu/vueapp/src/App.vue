@@ -33,7 +33,7 @@ export default {
       cards: ''
     }
   },
-  mounted(){
+  created(){
     this.getCategoryBar();
   },
   methods: {
@@ -77,6 +77,10 @@ export default {
   font-family: Comforta;
 }
 
+#app {
+  max-width: 1000px;
+  margin: auto;
+}
 .clear {
   clear: both;
 }
