@@ -2,18 +2,28 @@
   <div id="app">
     <Head />
     <div id="section-list">
-      <Cat v-on:click.native="getCategory(cat.rute)" v-for="cat in list" :category="cat" v-bind:key="cat.name"/>
+      <Cat
+        v-on:click.native="getCategory(cat.rute)"
+        v-for="cat in list"
+        :category="cat"
+        v-bind:key="cat.name"
+        @allLoad="allLoad"
+      /> 
     </div>
 
     <div id="content">
-      <Card v-for="card in cards" v-bind:key="card.name" :data="card"/>
+      <Card v-for="card in cards" v-bind:key="card.name" :data="card" />
     </div>
-
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import Vue from "vue";
+import axios from "axios";
+
+import Loading from "vue-loading-overlay";
+import 'vue-loading-overlay/dist/vue-loading.css';
+Vue.use(Loading);
 
 import Head from "./components/Head.vue";
 import Cat from "./components/Cat.vue";
@@ -27,34 +37,54 @@ export default {
     Cat,
     Card
   },
-  data(){
+  data() {
     return {
-      list: '',
-      cards: ''
-    }
+      list: "",
+      cards: "",
+      counterLoad: 0,
+      loader: "",
+      fullPage: true
+    };
   },
-  created(){
+  mounted() {
+    this.loader = this.$loading.show({
+      // Optional parameters
+      container: this.fullPage ? null : this.$refs.formContainer,
+      isFullPage: false,
+      canCancel: false,
+      opacity: 1,
+    });
     this.getCategoryBar();
   },
   methods: {
     getCategoryBar: function() {
-      axios.get('./api/cat.json')
+      axios
+        .get("./api/cat.json")
         .then(res => {
           this.list = res.data;
           this.getCategory(this.list[0].rute);
         })
         .catch(err => {
-          alert('Fallo al cargar' + err);
-        })
+          alert("Fallo al cargar" + err);
+        });
     },
     getCategory: function(cate) {
-      axios.get('./api' + cate + '.json')
+      axios
+        .get("./api" + cate + ".json")
         .then(res => {
           this.cards = res.data;
         })
         .catch(err => {
-          alert('Categoria no encontrada' + err);
+          alert("Categoria no encontrada" + err);
         });
+    },
+    allLoad: function() {
+      this.counterLoad++
+      if(this.counterLoad >= this.list.length){
+        this.loader.hide();
+        console.log(this.counterLoad);
+      }
+      
     }
   }
 };
