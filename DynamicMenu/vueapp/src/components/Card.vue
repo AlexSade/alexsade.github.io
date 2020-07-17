@@ -11,7 +11,7 @@
             </header>
 
             <section>
-                <img :src='imageRoute' alt="ensaladillarusa">
+                <img :src='imageRoute' alt="ensaladillarusa" v-on:load="$emit('allLoadCard')">
             </section>
             
             <footer>

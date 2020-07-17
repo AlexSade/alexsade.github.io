@@ -1,6 +1,6 @@
 <template>
     <div class="section-item">
-        <img :src='imageRoute' v-on:load="$emit('allLoad')" alt="entrantes">
+        <img :src='imageRoute' v-on:load="$emit('allLoadCat')" alt="entrantes">
         <h3>{{category.name}}</h3>
     </div>
 </template>

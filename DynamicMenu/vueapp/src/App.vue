@@ -7,13 +7,14 @@
         v-for="cat in list"
         :category="cat"
         v-bind:key="cat.name"
-        @allLoad="allLoad"
+        @allLoadCat="allLoadCat"
       /> 
     </div>
 
     <div id="content">
-      <Card v-for="card in cards" v-bind:key="card.name" :data="card" />
+      <Card v-for="card in cards" v-bind:key="card.name" :data="card" @allLoadCard="allLoadCard"/>
     </div>
+
   </div>
 </template>
 
@@ -41,19 +42,14 @@ export default {
     return {
       list: "",
       cards: "",
-      counterLoad: 0,
-      loader: "",
-      fullPage: true
+      counterLoadCat: 0,
+      load: "",
+      counterLoadCard: 0
+
     };
   },
   mounted() {
-    this.loader = this.$loading.show({
-      // Optional parameters
-      container: this.fullPage ? null : this.$refs.formContainer,
-      isFullPage: false,
-      canCancel: false,
-      opacity: 1,
-    });
+    //this.activateLoader();
     this.getCategoryBar();
   },
   methods: {
@@ -68,7 +64,9 @@ export default {
           alert("Fallo al cargar" + err);
         });
     },
+
     getCategory: function(cate) {
+      this.activateLoader();
       axios
         .get("./api" + cate + ".json")
         .then(res => {
@@ -76,17 +74,40 @@ export default {
         })
         .catch(err => {
           alert("Categoria no encontrada" + err);
+          this.load.hide();
         });
+
     },
-    allLoad: function() {
-      this.counterLoad++
-      if(this.counterLoad >= this.list.length){
-        this.loader.hide();
-        console.log(this.counterLoad);
+
+    allLoadCat: function() {
+      this.counterLoadCat++
+      if(this.counterLoadCat >= this.list.length){
+        //this.load.hide();
       }
       
+    },
+
+    allLoadCard: function() {
+      this.counterLoadCard++
+      if(this.counterLoadCard >= this.cards.length){
+        this.load.hide();
+      }
+      
+    },
+
+    activateLoader: function() {
+      this.load = this.$loading.show({
+        // Optional parameters
+        isFullPage: true,
+        canCancel: false,
+        opacity: 1,
+        loader: "dots"
+      });
+
     }
+
   }
+
 };
 </script>
 
