@@ -11,7 +11,8 @@
             </header>
 
             <section>
-                <img :src='imageRoute' alt="ensaladillarusa" v-on:load="$emit('allLoadCard')">
+                <Loader v-bind:style="{display:isLoadLoarder}"/>
+                <img :src='imageRoute' alt="ensaladillarusa" v-on:load="$emit('allLoadCard')" v-bind:style="{display:isLoad}">
             </section>
             
             <footer>
@@ -28,8 +29,14 @@
 </template>
 
 <script>
+
+import Loader from "./Loader.vue";
+
 export default {
     name: 'Card',
+    components: {
+        Loader
+    },
     props: {
         data: Object
     },
@@ -37,8 +44,17 @@ export default {
         return{
             imageRoute : './api/img/' + this.data.cat + '/' + this.data.img
         }
+    },
+    computed: {
+    isLoad: function() {
+        return "block";
+    },
+
+    isLoadLoarder: function() {
+        return "none";    
     }
-}
+  }
+};
 </script>
 
 <style scoped>
@@ -67,6 +83,7 @@ export default {
     }
 
     .alerg-card img{
+        display: none;
         width: 50px;
     }
 

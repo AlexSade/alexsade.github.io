@@ -1,31 +1,29 @@
 <template>
   <div id="app">
-    <Head />
-    <div id="section-list">
-      <Cat
-        v-on:click.native="getCategory(cat.rute)"
-        v-for="cat in list"
-        :category="cat"
-        v-bind:key="cat.name"
-        @allLoadCat="allLoadCat"
-      /> 
-    </div>
+    <Loader v-bind:style="{display:isLoadLoarder}" />
+    <div id="load-app" v-bind:style="{display:isLoad}">
+      <Head />
+      <div id="section-list">
+        <Cat
+          v-on:click.native="getCategory(cat.rute)"
+          v-for="cat in list"
+          :category="cat"
+          v-bind:key="cat.name"
+          @allLoadCat="allLoadCat"
+        />
+      </div>
 
-    <div id="content">
-      <Card v-for="card in cards" v-bind:key="card.name" :data="card" @allLoadCard="allLoadCard"/>
+      <div id="content">
+        <Card v-for="card in cards" v-bind:key="card.name" :data="card" @allLoadCard="allLoadCard" />
+      </div>
     </div>
-
   </div>
 </template>
 
 <script>
-import Vue from "vue";
 import axios from "axios";
 
-import Loading from "vue-loading-overlay";
-import 'vue-loading-overlay/dist/vue-loading.css';
-Vue.use(Loading);
-
+import Loader from "./components/Loader.vue";
 import Head from "./components/Head.vue";
 import Cat from "./components/Cat.vue";
 import Card from "./components/Card.vue";
@@ -36,20 +34,18 @@ export default {
   components: {
     Head,
     Cat,
-    Card
+    Card,
+    Loader
   },
   data() {
     return {
       list: "",
       cards: "",
       counterLoadCat: 0,
-      load: "",
       counterLoadCard: 0
-
     };
   },
   mounted() {
-    //this.activateLoader();
     this.getCategoryBar();
   },
   methods: {
@@ -66,7 +62,6 @@ export default {
     },
 
     getCategory: function(cate) {
-      this.activateLoader();
       axios
         .get("./api" + cate + ".json")
         .then(res => {
@@ -74,40 +69,35 @@ export default {
         })
         .catch(err => {
           alert("Categoria no encontrada" + err);
-          this.load.hide();
         });
-
     },
 
     allLoadCat: function() {
-      this.counterLoadCat++
-      if(this.counterLoadCat >= this.list.length){
-        //this.load.hide();
-      }
-      
+      this.counterLoadCat ++;
     },
 
     allLoadCard: function() {
-      this.counterLoadCard++
-      if(this.counterLoadCard >= this.cards.length){
-        this.load.hide();
+      this.counterLoadCard++;
+    }
+  },
+  computed: {
+    isLoad: function() {
+      if(this.counterLoadCat >= this.list.length){
+        return "block";
+      }else {
+        return "none";
       }
-      
     },
 
-    activateLoader: function() {
-      this.load = this.$loading.show({
-        // Optional parameters
-        isFullPage: true,
-        canCancel: false,
-        opacity: 1,
-        loader: "dots"
-      });
-
+    isLoadLoarder: function() {
+      if(this.counterLoadCat >= this.list.length){
+        return "none";
+      }else {
+        return "block";
+      }
+      
     }
-
   }
-
 };
 </script>
 
@@ -143,4 +133,5 @@ export default {
   margin-top: 60px;
   border-bottom: solid 1px #ccc;
 }
+
 </style>
