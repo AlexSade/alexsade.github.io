@@ -11,8 +11,8 @@
             </header>
 
             <section>
-                <Loader v-bind:style="{display:isLoadLoarder}"/>
-                <img :src='imageRoute' alt="ensaladillarusa" v-on:load="$emit('allLoadCard')" v-bind:style="{display:isLoad}">
+                <Loader v-bind:style="{display:loaderStatus}"/>
+                <img :src='imageRoute' alt="ensaladillarusa" v-on:load="isLoad" v-bind:style="{display:imgStatus}">
             </section>
             
             <footer>
@@ -42,18 +42,17 @@ export default {
     },
     data() {
         return{
-            imageRoute : './api/img/' + this.data.cat + '/' + this.data.img
+            imageRoute : './api/img/' + this.data.cat + '/' + this.data.img,
+            loaderStatus: "block",
+            imgStatus: "none"
         }
     },
-    computed: {
-    isLoad: function() {
-        return "block";
-    },
-
-    isLoadLoarder: function() {
-        return "none";    
+    methods: {
+        isLoad: function() {
+            this.loaderStatus = "none";
+            this.imgStatus = "block";
+        }
     }
-  }
 };
 </script>
 
