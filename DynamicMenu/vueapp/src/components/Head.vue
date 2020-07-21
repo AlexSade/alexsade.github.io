@@ -19,6 +19,7 @@ nav{
     width: 100%;
     position: fixed;
     top: 0px;
+    max-width: 1000px;
 }
 
 nav h1{
