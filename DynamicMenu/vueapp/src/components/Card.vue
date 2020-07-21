@@ -65,6 +65,7 @@ export default {
         margin-right: 15px;
         margin-left: 15px;
         margin-bottom: 10px;
+        height: 47px;
     }
 
     .title-card{
@@ -81,8 +82,7 @@ export default {
         font-style: italic;
     }
 
-    .alerg-card img{
-        display: none;
+    .alerg-card img {
         width: 50px;
     }
 
