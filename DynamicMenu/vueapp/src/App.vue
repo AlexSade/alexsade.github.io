@@ -14,7 +14,7 @@
       </div>
 
       <div id="content">
-        <Card v-for="card in cards" v-bind:key="card.name" :data="card" @allLoadCard="allLoadCard" />
+        <Card v-for="card in cards" v-bind:key="card.name" :data="card" @allLoadCard="allLoadCard" :wishList="wishListMain"/>
       </div>
     </div>
   </div>
@@ -42,7 +42,8 @@ export default {
       list: "",
       cards: "",
       counterLoadCat: 0,
-      counterLoadCard: 0
+      counterLoadCard: 0,
+      wishListMain: []
     };
   },
   mounted() {

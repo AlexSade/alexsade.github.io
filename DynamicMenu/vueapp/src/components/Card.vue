@@ -38,7 +38,8 @@ export default {
         Loader
     },
     props: {
-        data: Object
+        data: Object,
+        wishList: Array
     },
     data() {
         return{
@@ -54,16 +55,17 @@ export default {
         },
 
         addWish: function() {
-            let wishIndex = this.$wishList.findIndex(this.findWishList);
+            console.log('onclickfunciona');
+            let wishIndex = this.wishList.findIndex(this.findWishList);
             if(wishIndex == -1){
-                this.$wishList.push({
+                this.wishList.push({
                     name: this.data.name,
                     cat: this.data.cat
                 });
             }else{
-                this.$wishList.splice(wishIndex,1);
+                this.wishList.splice(wishIndex,1);
             }
-            console.log(this.$wishList);
+            console.log(this.wishList);
         },
 
         findWishList: function(searchObj) {
@@ -73,7 +75,7 @@ export default {
     
     computed: {
         isSelected: function() {
-            if(this.$wishList.find(this.findWishList) === undefined){
+            if(this.wishList.find(this.findWishList) === undefined){
                 return "black";
             }else {
                 return "red";
