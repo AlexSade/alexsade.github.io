@@ -22,7 +22,7 @@
                     <img src="../assets/img/icons/IconoAlergenoLacteos-DairyProducts_icon-icons.com_67597.svg" alt="lacteos" class="icon-alerg">
                 </div>
 
-                <span class="wish-item">☆</span>
+                <span class="wish-item" v-on:click="addWish" v-bind:style="{color:isSelected}">☆</span>
             </footer>
             <div class="clear"/>
         </div>
@@ -51,6 +51,33 @@ export default {
         isLoad: function() {
             this.loaderStatus = "none";
             this.imgStatus = "block";
+        },
+
+        addWish: function() {
+            let wishIndex = this.$wishList.findIndex(this.findWishList);
+            if(wishIndex == -1){
+                this.$wishList.push({
+                    name: this.data.name,
+                    cat: this.data.cat
+                });
+            }else{
+                this.$wishList.splice(wishIndex,1);
+            }
+
+        },
+
+        findWishList: function(searchObj) {
+            return searchObj.name === this.data.name;
+        }
+    },
+    
+    computed: {
+        isSelected: function() {
+            if(this.$wishList.find(this.findWishList) === undefined){
+                return "black";
+            }else {
+                return "red";
+            }
         }
     }
 };
