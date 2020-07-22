@@ -63,7 +63,7 @@ export default {
             }else{
                 this.$wishList.splice(wishIndex,1);
             }
-
+            console.log(this.$wishList);
         },
 
         findWishList: function(searchObj) {
