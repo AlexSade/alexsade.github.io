@@ -2,7 +2,7 @@
   <div id="app">
     <Loader v-bind:style="{display:isLoadLoarder}" />
     <div id="load-app" v-bind:style="{display:isLoad}">
-      <Head />
+      <Head :wishList="wishListMain"/>
       <div id="section-list">
         <Cat
           v-on:click.native="getCategory(cat.rute)"

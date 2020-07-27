@@ -1,13 +1,16 @@
 <template>
     <nav>
         <h1 class="logo">CasaPepe</h1>
-        <span id="wish-list">☆</span>
+        <span id="wish-list">☆<span id="wish-count">{{wishList.length}}</span></span>
     </nav>
 </template>
 
 <script>
 export default {
-    name: 'Head'
+    name: 'Head',
+    props: {
+        wishList: Array
+    }
 }
 </script>
 
@@ -20,6 +23,7 @@ nav{
     position: fixed;
     top: 0px;
     max-width: 1000px;
+    z-index: 99;
 }
 
 nav h1{
@@ -34,5 +38,17 @@ nav span{
     float: right;
     font-size: 200%;
     margin-right: 15px;
+}
+
+#wish-count{
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    background-color: red;
+    font-size: 14px;
+    top: 1px;
+    right: -8px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    color: white;
 }
 </style>
