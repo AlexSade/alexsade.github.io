@@ -1,7 +1,8 @@
 <template>
     <nav>
         <h1 class="logo">CasaPepe</h1>
-        <span id="wish-list">☆<span id="wish-count">{{wishList.length}}</span></span>
+        <img src="../assets/img/icons/menu.svg" alt="menu_icon">
+        <span id="wish-count" v-if="wishList.length > 0">{{wishList.length}}</span>
     </nav>
 </template>
 
@@ -31,13 +32,14 @@ nav h1{
     font-family: Lobster;
     float: left;
     font-size: 200%;
+    margin-top: 2px;
 }
 
-nav span{
+nav img{
     display: block;
     float: right;
-    font-size: 200%;
     margin-right: 15px;
+    cursor: pointer;
 }
 
 #wish-count{
@@ -45,8 +47,8 @@ nav span{
     position: absolute;
     background-color: red;
     font-size: 14px;
-    top: 1px;
-    right: -8px;
+    top: 2px;
+    right: 11px;
     padding: 5px 10px;
     border-radius: 50%;
     color: white;

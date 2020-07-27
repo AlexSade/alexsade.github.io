@@ -124,6 +124,7 @@ export default {
         display: block;
         font-size: 40px;
         float: right;
+        cursor: pointer;
     }
 
     .item-card section img{

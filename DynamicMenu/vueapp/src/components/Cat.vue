@@ -26,6 +26,7 @@ export default {
         display: inline-block;
         text-align: center;
         margin: 10px;
+        cursor: pointer;
     }
     .section-item img{
         width: 75px;
