@@ -1,105 +1,20 @@
 <template>
   <div id="app">
-    <Loader v-bind:style="{display:isLoadLoarder}" />
-    <div id="load-app" v-bind:style="{display:isLoad}">
-      <Head :wishList="wishListMain"/>
-      <div id="section-list">
-        <Cat
-          v-on:click.native="getCategory(cat.rute)"
-          v-for="cat in list"
-          :category="cat"
-          v-bind:key="cat.name"
-          @allLoadCat="allLoadCat"
-        />
-      </div>
-
-      <div id="content">
-        <Card v-for="card in cards" v-bind:key="card.name" :data="card" @allLoadCard="allLoadCard" :wishList="wishListMain"/>
-      </div>
-    </div>
+    <transition name="slide" mode="out-in">
+      <router-view :wishListMain="WishContent"/>
+    </transition>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-
-import Loader from "./components/Loader.vue";
-import Head from "./components/Head.vue";
-import Cat from "./components/Cat.vue";
-import Card from "./components/Card.vue";
-//import CardList from './assets/json/entrantes.json';
-
 export default {
   name: "App",
-  components: {
-    Head,
-    Cat,
-    Card,
-    Loader
-  },
-  data() {
-    return {
-      list: "",
-      cards: "",
-      counterLoadCat: 0,
-      counterLoadCard: 0,
-      wishListMain: []
+  data(){
+    return{
+      WishContent: []
     };
-  },
-  mounted() {
-    this.getCategoryBar();
-  },
-  methods: {
-    getCategoryBar: function() {
-      axios
-        .get("./api/cat.json")
-        .then(res => {
-          this.list = res.data;
-          this.getCategory(this.list[0].rute);
-        })
-        .catch(err => {
-          alert("Fallo al cargar" + err);
-        });
-    },
-
-    getCategory: function(cate) {
-      axios
-        .get("./api" + cate + ".json")
-        .then(res => {
-          this.cards = res.data;
-        })
-        .catch(err => {
-          alert("Categoria no encontrada" + err);
-        });
-    },
-
-    allLoadCat: function() {
-      this.counterLoadCat ++;
-    },
-
-    allLoadCard: function() {
-      this.counterLoadCard++;
-    }
-  },
-  computed: {
-    isLoad: function() {
-      if(this.counterLoadCat >= this.list.length){
-        return "block";
-      }else {
-        return "none";
-      }
-    },
-
-    isLoadLoarder: function() {
-      if(this.counterLoadCat >= this.list.length){
-        return "none";
-      }else {
-        return "block";
-      }
-      
-    }
   }
-};
+}
 </script>
 
 <style>
@@ -134,5 +49,16 @@ export default {
   margin-top: 60px;
   border-bottom: solid 1px #ccc;
 }
+
+.slide-enter-active,
+.slide-leave-active{
+  transition: opacity 1s, transform 1s;
+}
+
+.slide-enter,
+.slide-leave-to {
+  opacity: 0;
+}
+
 
 </style>

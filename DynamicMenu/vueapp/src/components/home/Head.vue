@@ -1,7 +1,7 @@
 <template>
     <nav>
         <h1 class="logo">CasaPepe</h1>
-        <img src="../assets/img/icons/menu.svg" alt="menu_icon">
+        <img src="../../assets/img/icons/menu.svg" alt="menu_icon" v-on:click="redirect">
         <span id="wish-count" v-if="wishList.length > 0">{{wishList.length}}</span>
     </nav>
 </template>
@@ -11,6 +11,11 @@ export default {
     name: 'Head',
     props: {
         wishList: Array
+    },
+    methods: {
+        redirect: function(){
+            this.$router.push({ path: '/wish-list' })
+        }
     }
 }
 </script>
