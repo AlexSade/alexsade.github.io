@@ -150,13 +150,6 @@ export default {
           return "red";
         }
       }
-      /*
-      if (this.wishList[this.wishList.findIndex(this.findIndexCatWish)].wish.findIndex(this.findWish) === undefined) {
-        return "black";
-      } else {
-        return "red";
-      }
-      */
     },
   },
 };
