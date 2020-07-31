@@ -36,7 +36,7 @@
         />
       </div>
 
-      <span class="wish-item" v-on:click="addWish" v-bind:style="{color:isSelected}">☆</span>
+      <span class="wish-item" v-on:click="clickWish" v-bind:style="{color:isSelected}">☆</span>
     </footer>
     <div class="clear" />
   </div>
@@ -60,6 +60,7 @@ export default {
       imageRoute: "./api/img/" + this.data.cat + "/" + this.data.img,
       loaderStatus: "block",
       imgStatus: "none",
+      auxFindIndex: "",
     };
   },
   methods: {
@@ -68,27 +69,49 @@ export default {
       this.imgStatus = "block";
     },
 
-    addWish: function () {
-      console.log(this.catList);
-      let wishIndex = this.wishList.findIndex(this.findWishList);
-      if (wishIndex == -1) {
-        this.wishList.push({
-          name: this.data.name,
-          cat: this.data.cat,
-        });
-      } else {
-        this.wishList.splice(wishIndex, 1);
-      }
-      console.log(this.findIndexCat('entrantes'));
+    clickWish: function () {
       console.log(this.wishList);
+      //Extract index of the category
+      let catIndex = this.wishList.findIndex(this.findIndexCatWish);
+      console.log(catIndex);
+      if (catIndex == -1) {
+        //Create category in array
+        this.wishList.push({
+          cat: this.data.cat,
+          wish: [],
+        });
+        this.wishList.sort(this.logicSort);
+        catIndex = this.wishList.findIndex(this.findIndexCatWish);
+        this.controlWish(catIndex);
+      } else {
+        this.controlWish(catIndex);
+      }
     },
 
-    findWishList: function (searchObj) {
+    controlWish: function (indexCat) {
+      //Find if exist de wish
+      let indexWish = this.wishList[indexCat].wish.findIndex(this.findWish);
+      //If not find save it
+      if (indexWish == -1) {
+        this.wishList[indexCat].wish.push({
+          name: this.data.name,
+        });
+        //If find it remove them
+      } else {
+        this.wishList[indexCat].wish.splice(indexWish, 1);
+      }
+      //If the cat is empy remove them
+      if (this.wishList[indexCat].wish.length < 1) {
+        this.wishList.splice(indexCat, 1);
+      }
+    },
+
+    findIndexCatWish: function (searchObj) {
+      return searchObj.cat === this.data.cat;
+    },
+
+    findWish: function (searchObj) {
       return searchObj.name === this.data.name;
-    },
-
-    sortWishList: function () {
-      this.wishList.sort(this.logicSort);
     },
 
     logicSort: function (a, b) {
@@ -101,22 +124,39 @@ export default {
       }
     },
 
-    findIndexCat: function () {
-      return this.catList.findIndex((searchObj) => {
-        return searchObj.name.toLowerCase() === 'entrantes';
-      },this.object);
+    findIndexCat: function (catSearch) {
+      this.auxFindIndex = catSearch;
+      let index = this.catList.findIndex(this.findIndexCatLogic);
+      return index;
     },
 
-
+    findIndexCatLogic: function (searchObj) {
+      return searchObj.name.toLowerCase() === this.auxFindIndex;
+    },
   },
 
   computed: {
     isSelected: function () {
-      if (this.wishList.find(this.findWishList) === undefined) {
+      if (this.wishList.findIndex(this.findIndexCatWish) == -1) {
+        return "black";
+      } else {
+        if (
+          this.wishList[
+            this.wishList.findIndex(this.findIndexCatWish)
+          ].wish.findIndex(this.findWish) == -1
+        ) {
+          return "black";
+        } else {
+          return "red";
+        }
+      }
+      /*
+      if (this.wishList[this.wishList.findIndex(this.findIndexCatWish)].wish.findIndex(this.findWish) === undefined) {
         return "black";
       } else {
         return "red";
       }
+      */
     },
   },
 };
