@@ -33,7 +33,6 @@ export default {
 
 * {
   margin: 0px;
-  padding: 1px;
   font-family: Comforta;
   user-select: none;
 }

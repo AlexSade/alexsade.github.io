@@ -202,4 +202,8 @@ export default {
 .item-card section img {
   width: 100%;
 }
+
+footer{
+    padding: 4px;
+}
 </style>

@@ -15,6 +15,9 @@
         </div>
       </div>
     </div>
+    <footer>
+        <h1 v-on:click="clearWish">ELIMINAR</h1>
+    </footer>
   </div>
 </template>
 
@@ -34,6 +37,10 @@ export default {
         if(this.wishListMain.content[indexCat].wish.length < 1){
             this.wishListMain.content.splice(indexCat, 1);
         }
+    },
+    clearWish: function() {
+        this.wishListMain.count = 0;
+        this.wishListMain.content = [];
     }
   },
 };
@@ -87,5 +94,16 @@ nav img {
   float: right;
   margin-right: 15px;
   cursor: pointer;
+}
+
+footer {
+    background-color: red;
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%, 0);
+    position: fixed;
+    bottom: 5px;
+    padding: 15px;
+    border-radius: 5px;
 }
 </style>
