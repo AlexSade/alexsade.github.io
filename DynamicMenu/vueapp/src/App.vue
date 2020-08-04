@@ -11,7 +11,10 @@ export default {
   name: "App",
   data(){
     return{
-      WishContent: []
+      WishContent: {
+        content: [],
+        count : 0
+      }
     };
   }
 }
@@ -30,8 +33,9 @@ export default {
 
 * {
   margin: 0px;
-  padding: 0px;
+  padding: 1px;
   font-family: Comforta;
+  user-select: none;
 }
 
 #app {

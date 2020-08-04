@@ -52,7 +52,7 @@ export default {
   },
   props: {
     data: Object,
-    wishList: Array,
+    wishList: Object,
     catList: Array,
   },
   data() {
@@ -72,16 +72,16 @@ export default {
     clickWish: function () {
       console.log(this.wishList);
       //Extract index of the category
-      let catIndex = this.wishList.findIndex(this.findIndexCatWish);
+      let catIndex = this.wishList.content.findIndex(this.findIndexCatWish);
       console.log(catIndex);
       if (catIndex == -1) {
         //Create category in array
-        this.wishList.push({
+        this.wishList.content.push({
           cat: this.data.cat,
           wish: [],
         });
-        this.wishList.sort(this.logicSort);
-        catIndex = this.wishList.findIndex(this.findIndexCatWish);
+        this.wishList.content.sort(this.logicSort);
+        catIndex = this.wishList.content.findIndex(this.findIndexCatWish);
         this.controlWish(catIndex);
       } else {
         this.controlWish(catIndex);
@@ -90,19 +90,21 @@ export default {
 
     controlWish: function (indexCat) {
       //Find if exist de wish
-      let indexWish = this.wishList[indexCat].wish.findIndex(this.findWish);
+      let indexWish = this.wishList.content[indexCat].wish.findIndex(this.findWish);
       //If not find save it
       if (indexWish == -1) {
-        this.wishList[indexCat].wish.push({
+        this.wishList.content[indexCat].wish.push({
           name: this.data.name,
         });
+        this.wishList.count ++;
         //If find it remove them
       } else {
-        this.wishList[indexCat].wish.splice(indexWish, 1);
+        this.wishList.content[indexCat].wish.splice(indexWish, 1);
+        this.wishList.count --;
       }
       //If the cat is empy remove them
-      if (this.wishList[indexCat].wish.length < 1) {
-        this.wishList.splice(indexCat, 1);
+      if (this.wishList.content[indexCat].wish.length < 1) {
+        this.wishList.content.splice(indexCat, 1);
       }
     },
 
@@ -137,12 +139,12 @@ export default {
 
   computed: {
     isSelected: function () {
-      if (this.wishList.findIndex(this.findIndexCatWish) == -1) {
+      if (this.wishList.content.findIndex(this.findIndexCatWish) == -1) {
         return "black";
       } else {
         if (
-          this.wishList[
-            this.wishList.findIndex(this.findIndexCatWish)
+          this.wishList.content[
+            this.wishList.content.findIndex(this.findIndexCatWish)
           ].wish.findIndex(this.findWish) == -1
         ) {
           return "black";

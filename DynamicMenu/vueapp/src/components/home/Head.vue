@@ -2,7 +2,8 @@
     <nav>
         <h1 class="logo">CasaPepe</h1>
         <img src="../../assets/img/icons/menu.svg" alt="menu_icon" v-on:click="redirect">
-        <span id="wish-count" v-if="wishList.length > 0">{{wishList.length}}</span>
+        <span id="wish-back">★</span>
+        <span id="wish-count">{{wishList.count}}</span>
     </nav>
 </template>
 
@@ -10,7 +11,7 @@
 export default {
     name: 'Head',
     props: {
-        wishList: Array
+        wishList: Object
     },
     methods: {
         redirect: function(){
@@ -50,12 +51,17 @@ nav img{
 #wish-count{
     font-family: Arial, Helvetica, sans-serif;
     position: absolute;
-    background-color: red;
     font-size: 14px;
-    top: 2px;
-    right: 11px;
-    padding: 5px 10px;
-    border-radius: 50%;
+    top: 13px;
+    right: 23px;
     color: white;
+}
+#wish-back{
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    top: -5px;
+    right: 11px;
+    color: red;
+    font-size: 34px;
 }
 </style>

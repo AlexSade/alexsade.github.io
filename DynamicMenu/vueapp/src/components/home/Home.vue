@@ -52,7 +52,7 @@ export default {
     };
   },
   props: {
-    wishListMain: Array,
+    wishListMain: Object,
   },
   mounted() {
     this.getCategoryBar();
