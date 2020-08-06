@@ -6,7 +6,7 @@
         "cat": "carnes",
         "img": "solom_cerd.jpg",
         "alrg": [
-            "huevos"
+            "egg"
         ]
     },
     {
@@ -36,7 +36,7 @@
         "cat": "carnes",
         "img": "pollo_curry.jpg",
         "alrg": [
-            "lacteos"
+            "dairy"
         ]
     }
 ]
