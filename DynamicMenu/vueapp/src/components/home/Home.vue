@@ -5,7 +5,7 @@
       <Head :wishList="wishListMain" />
       <div id="section-list">
         <Cat
-          v-on:click.native="getCategory(cat.rute)"
+          v-on:click.native="clickCat(cat.rute)"
           v-for="cat in list"
           :category="cat"
           v-bind:key="cat.name"
@@ -45,6 +45,7 @@ export default {
   },
   data() {
     return {
+      loadedCat: "",
       list: "",
       cards: "",
       counterLoadCat: 0,
@@ -68,6 +69,12 @@ export default {
         .catch((err) => {
           alert("Fallo al cargar" + err);
         });
+    },
+
+    clickCat: function(cate) {
+        console.log(event);
+        this.loadedCat = true;
+        this.getCategory(cate)
     },
 
     getCategory: function (cate) {
@@ -105,8 +112,8 @@ export default {
       } else {
         return "block";
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
