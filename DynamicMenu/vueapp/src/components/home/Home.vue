@@ -45,7 +45,6 @@ export default {
   },
   data() {
     return {
-      loadedCat: "",
       list: "",
       cards: "",
       counterLoadCat: 0,
@@ -72,9 +71,7 @@ export default {
     },
 
     clickCat: function(cate) {
-        console.log(event);
-        this.loadedCat = true;
-        this.getCategory(cate)
+        this.getCategory(cate);
     },
 
     getCategory: function (cate) {

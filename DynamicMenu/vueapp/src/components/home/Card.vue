@@ -20,18 +20,19 @@
         v-on:load="isLoad"
         v-bind:style="{display:imgStatus}"
       />
+      <div class="card-detail" v-bind:style="{display:isClicked}">
+        <h3>{{data.descript}}</h3>
+      </div>
+      
     </section>
 
     <footer>
       <div class="alerg-card">
         <img
-          src="../../assets/img/icons/IconoAlergenoGluten-Gluten_icon-icons.com_67600.png"
+          v-for="item in data.alrg"
+          v-bind:key="item"
+          :src="'./api/img/allerg/' + item + '.svg'"
           alt="gluten"
-          class="icon-alerg"
-        />
-        <img
-          src="../../assets/img/icons/IconoAlergenoLacteos-DairyProducts_icon-icons.com_67597.svg"
-          alt="lacteos"
           class="icon-alerg"
         />
       </div>
@@ -53,7 +54,7 @@ export default {
   props: {
     data: Object,
     wishList: Object,
-    catList: Array,
+    catList: Array
   },
   data() {
     return {

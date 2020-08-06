@@ -6,8 +6,9 @@
         "cat": "entrantes",
         "img": "ensaladilla.jpg",
         "alrg": [
-            "huevos",
-            "crustaceos"
+            "egg",
+            "crust",
+            "nuts"
         ]
     },
     {
@@ -17,7 +18,7 @@
         "cat": "entrantes",
         "img": "carn_salsa.jpg",
         "alrg": [
-
+            "nuts"
         ]
     },
     {
